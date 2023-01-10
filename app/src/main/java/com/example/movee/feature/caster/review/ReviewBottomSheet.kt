@@ -46,13 +46,19 @@ class ReviewBottomSheet(private val movieID: Int) : BottomSheetDialogFragment() 
         }
 
         adapter.addLoadStateListener { state ->
-            if (viewModel.reviewMovie.value != null && adapter.snapshot().isEmpty()) {
+            if (adapter.snapshot().isEmpty()) {
                 setEmptyState()
+            } else {
+                hideEmptyState()
             }
         }
     }
 
-    private fun setEmptyState() = with(binding){
+    private fun hideEmptyState() {
+        binding.containerEmptyState.visibility = View.GONE
+    }
+
+    private fun setEmptyState() = with(binding) {
         imageViewState.load(R.drawable.ic_empty_state)
 
         buttonCloseEmpty.setOnClickListener { dismiss() }

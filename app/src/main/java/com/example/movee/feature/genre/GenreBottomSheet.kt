@@ -9,26 +9,34 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.movee.base.BaseBottomSheet
 import com.example.movee.data.repository.genre.Genre
 import com.example.movee.databinding.BottomSheetGenreBinding
 import com.example.movee.databinding.LoadingBinding
 import com.example.movee.network.ViewState
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenreBottomSheet(
     private  val onGenreSelected: (id: Int, name: String) -> Unit
-) : BottomSheetDialogFragment() {
+) : BaseBottomSheet() {
 
     private val viewModel by viewModel<GenreViewModel>()
     private lateinit var binding: BottomSheetGenreBinding
     private lateinit var progressBinding: LoadingBinding
     private lateinit var adapter: GenreAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    override fun networkListener(state: Boolean) {
+        if (state) {
+            Toast.makeText(context, "connected", Toast.LENGTH_SHORT)
+                .show()
+        }  else {
+            Toast.makeText(context, "losing connection", Toast.LENGTH_SHORT)
+                .show()
+        }
+    }
+
+    override fun getLayoutView(inflater: LayoutInflater, container: ViewGroup?): View {
         binding = BottomSheetGenreBinding.inflate(inflater, container, false)
         progressBinding = LoadingBinding.bind(binding.root)
         return binding.root
