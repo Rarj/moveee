@@ -1,19 +1,18 @@
 package com.example.movee.network.connectivity
 
 import android.util.Log
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 object NetworkStateManager {
 
-    private var _state = MutableSharedFlow<Boolean>()
-    val state get() =  _state.asSharedFlow()
+    private var _state = MutableStateFlow(true)
+    val state get() = _state.asStateFlow()
 
-    suspend fun updateNetworkState(value : Boolean) {
-        Log.e( "updateNetworkState: ", value.toString())
+    suspend fun updateNetworkState(value: Boolean) {
+        Log.e("updateNetworkState: ", value.toString())
         _state.emit(value)
     }
-
 
 
 }
