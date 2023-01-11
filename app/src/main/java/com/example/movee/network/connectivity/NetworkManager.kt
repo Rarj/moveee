@@ -5,9 +5,9 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
+import android.os.Build
 import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
-import kotlinx.coroutines.launch
 
 class NetworkManager(private val scope: LifecycleCoroutineScope) :
     ConnectivityManager.NetworkCallback() {
@@ -27,7 +27,7 @@ class NetworkManager(private val scope: LifecycleCoroutineScope) :
     override fun onAvailable(network: Network) {
         super.onAvailable(network)
         Log.e("onAvailable: ", true.toString())
-        scope.launch {
+        scope.launchWhenStarted {
             NetworkStateManager.updateNetworkState(true)
         }
     }
@@ -35,12 +35,27 @@ class NetworkManager(private val scope: LifecycleCoroutineScope) :
     override fun onLost(network: Network) {
         super.onLost(network)
         Log.e("onLost: ", true.toString())
-        scope.launch {
+        scope.launchWhenStarted {
             NetworkStateManager.updateNetworkState(false)
         }
     }
 
     fun registerCallback() {
         connectivityManager.registerNetworkCallback(networkRequest, this@NetworkManager)
+    }
+
+    fun isConnected(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val isWifiEnabled =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+                    ?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
+            val isCellularEnabled =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+                    ?.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
+
+            isWifiEnabled != null || isCellularEnabled != null
+        } else {
+            connectivityManager.activeNetworkInfo?.isConnected ?: false
+        }
     }
 }

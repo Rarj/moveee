@@ -2,7 +2,6 @@ package com.example.movee
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -15,8 +14,6 @@ import com.example.movee.feature.detail.DetailMovieActivity.Companion.gotoDetail
 import com.example.movee.feature.discovermovie.DiscoverMovieAdapter
 import com.example.movee.feature.discovermovie.DiscoverMovieViewModel
 import com.example.movee.feature.genre.GenreBottomSheet
-import com.example.movee.network.connectivity.NetworkStateManager
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,13 +29,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun networkListener(state: Boolean) {
-        if (state) {
-            Toast.makeText(this@MainActivity, "connected", Toast.LENGTH_SHORT)
-                .show()
-        }  else {
-            Toast.makeText(this@MainActivity, "losing connection", Toast.LENGTH_SHORT)
-                .show()
-        }
+        validateConnection(state)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
