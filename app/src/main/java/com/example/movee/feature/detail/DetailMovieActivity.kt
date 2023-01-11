@@ -78,7 +78,7 @@ class DetailMovieActivity : BaseActivity() {
                         startActivity(intent)
 
                         binding.progress.visibility = View.GONE
-                        binding.buttonTrailer.text = "Watch Trailer"
+                        binding.buttonTrailer.text = getString(R.string.watch_trailer)
                     }
 
                     is ViewState.Error -> {

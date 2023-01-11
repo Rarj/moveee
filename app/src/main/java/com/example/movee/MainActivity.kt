@@ -49,7 +49,7 @@ class MainActivity : BaseActivity() {
 
     private fun setupUI() = with(binding) {
         imageViewState.load(R.drawable.ic_empty_state)
-        textViewState.text = "Kamu belum pilih genre."
+        textViewState.text = getString(R.string.genre_not_picked_yet)
 
         dropDownPickGenre.setOnClickListener { showGenrePicker() }
         buttonPickGenre.setOnClickListener { showGenrePicker() }

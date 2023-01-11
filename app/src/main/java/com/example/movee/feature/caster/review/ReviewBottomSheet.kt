@@ -46,7 +46,7 @@ class ReviewBottomSheet(private val movieID: Int) : BaseBottomSheet() {
             adapter = this@ReviewBottomSheet.adapter
         }
 
-        adapter.addLoadStateListener { state ->
+        adapter.addLoadStateListener { _ ->
             if (adapter.snapshot().isEmpty()) {
                 setEmptyState()
             } else {

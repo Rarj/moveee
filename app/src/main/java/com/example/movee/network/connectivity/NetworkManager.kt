@@ -6,7 +6,6 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.net.NetworkRequest
 import android.os.Build
-import android.util.Log
 import androidx.lifecycle.LifecycleCoroutineScope
 
 class NetworkManager(private val scope: LifecycleCoroutineScope) :
@@ -26,7 +25,6 @@ class NetworkManager(private val scope: LifecycleCoroutineScope) :
 
     override fun onAvailable(network: Network) {
         super.onAvailable(network)
-        Log.e("onAvailable: ", true.toString())
         scope.launchWhenStarted {
             NetworkStateManager.updateNetworkState(true)
         }
@@ -34,7 +32,6 @@ class NetworkManager(private val scope: LifecycleCoroutineScope) :
 
     override fun onLost(network: Network) {
         super.onLost(network)
-        Log.e("onLost: ", true.toString())
         scope.launchWhenStarted {
             NetworkStateManager.updateNetworkState(false)
         }

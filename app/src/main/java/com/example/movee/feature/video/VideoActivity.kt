@@ -1,5 +1,7 @@
 package com.example.movee.feature.video
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import com.example.movee.BuildConfig
 import com.example.movee.databinding.ActivityVideoBinding
@@ -12,6 +14,7 @@ import com.google.android.youtube.player.YouTubePlayer.PlayerStateChangeListener
 class VideoActivity : YouTubeBaseActivity() {
 
     private lateinit var binding: ActivityVideoBinding
+    private val youtubeId by lazy { intent.getStringExtra("youtube_key") }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,35 +39,31 @@ class VideoActivity : YouTubeBaseActivity() {
 
                     override fun onVideoEnded() {}
 
-                    override fun onError(p0: YouTubePlayer.ErrorReason?) {}
+                    override fun onError(p0: YouTubePlayer.ErrorReason?) {
+                        openYoutubeWeb()
+                    }
                 })
                 player?.setOnFullscreenListener { isFullscreen ->
                     if (isFullscreen.not()) finish()
                 }
-                player?.loadVideo(intent.getStringExtra("youtube_key"))
+                player?.loadVideo(youtubeId)
                 player?.play()
             }
 
             override fun onInitializationFailure(
                 p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?
             ) {
-                // TODO: finish activity and show youtube website using key
+                openYoutubeWeb()
             }
         })
     }
 
-    private fun playerStateChangeListener(player: YouTubePlayer) =
-        object : PlayerStateChangeListener {
-            override fun onLoading() { player.setFullscreen(true) }
-
-            override fun onLoaded(p0: String?) {}
-
-            override fun onAdStarted() {}
-
-            override fun onVideoStarted() {}
-
-            override fun onVideoEnded() {}
-
-            override fun onError(p0: YouTubePlayer.ErrorReason?) {}
-        }
+    private fun openYoutubeWeb() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("http://www.youtube.com/watch?v=${youtubeId}")
+            )
+        )
+    }
 }
