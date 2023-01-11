@@ -6,7 +6,6 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.movee.BuildConfig
 import com.example.movee.R
+import com.example.movee.base.BaseActivity
 import com.example.movee.data.repository.caster.CasterResponse
 import com.example.movee.data.repository.detail.DetailMovieResponse
 import com.example.movee.databinding.ActivityDetailMovieBinding
@@ -30,9 +30,9 @@ import com.google.android.material.chip.Chip
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
+import java.util.Random
 
-class DetailMovieActivity : AppCompatActivity() {
+class DetailMovieActivity : BaseActivity() {
 
     private val videoViewModel by viewModel<VideoViewModel>()
     private val viewModel by viewModel<DetailMovieViewModel>()
@@ -40,11 +40,17 @@ class DetailMovieActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailMovieBinding
     private val movieId by lazy { intent.getIntExtra(MOVIE_ID, 0) }
 
+    override fun bindLayout(): View {
+        binding = ActivityDetailMovieBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
+    override fun networkListener(state: Boolean) {
+        validateConnection(state)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityDetailMovieBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         viewModel.detailMovie(movieId)
         casterViewModel.casters(movieId)

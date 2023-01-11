@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
+import com.example.movee.feature.NoInternetBottomSheet
 import com.example.movee.network.connectivity.NetworkManager
 import com.example.movee.network.connectivity.NetworkStateManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.coroutines.flow.collectLatest
 
-abstract class BaseBottomSheet: BottomSheetDialogFragment() {
+abstract class BaseBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var networkManager: NetworkManager
 
@@ -28,7 +28,7 @@ abstract class BaseBottomSheet: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        networkManager = NetworkManager(lifecycleScope)
+        networkManager = NetworkManager(viewLifecycleOwner.lifecycleScope)
         context?.let { networkManager.initialize(it) }
     }
 
@@ -38,9 +38,24 @@ abstract class BaseBottomSheet: BottomSheetDialogFragment() {
         registerListener()
     }
 
+    protected fun validateConnection(state: Boolean) {
+//        val noConnection = NoInternetBottomSheet()
+//        noConnection.isCancelable = false
+//
+//        if (state) {
+//            if (noConnection.isVisible) noConnection.dismiss()
+//        } else {
+//            if (noConnection.isVisible.not()) {
+//                activity?.supportFragmentManager?.let {
+//                    noConnection.show(it, "NO_INTERNET_CONNECTION")
+//                }
+//            }
+//        }
+    }
+
     private fun registerListener() {
-        lifecycleScope.launchWhenStarted {
-            NetworkStateManager.state.collectLatest { state ->
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            NetworkStateManager.state.collect { state ->
                 networkListener(state)
             }
         }

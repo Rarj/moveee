@@ -10,22 +10,23 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.example.movee.R
+import com.example.movee.base.BaseBottomSheet
 import com.example.movee.databinding.BottomSheetReviewBinding
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ReviewBottomSheet(private val movieID: Int) : BottomSheetDialogFragment() {
+class ReviewBottomSheet(private val movieID: Int) : BaseBottomSheet() {
 
     private val viewModel by viewModel<ReviewViewModel>()
     private lateinit var binding: BottomSheetReviewBinding
     private lateinit var adapter: ReviewAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
-        binding = BottomSheetReviewBinding.inflate(inflater, container, false)
+    override fun getLayoutView(inflater: LayoutInflater, container: ViewGroup?): View {
+        binding = BottomSheetReviewBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun networkListener(state: Boolean) {
+        validateConnection(state)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
