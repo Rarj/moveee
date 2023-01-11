@@ -7,6 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.movee.feature.NoInternetBottomSheet
 import com.example.movee.network.connectivity.NetworkManager
 import com.example.movee.network.connectivity.NetworkStateManager
+import kotlinx.coroutines.flow.collectLatest
 
 abstract class BaseActivity : AppCompatActivity() {
 
@@ -46,7 +47,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     private fun registerListener() {
         lifecycleScope.launchWhenStarted {
-            NetworkStateManager.state.collect { state ->
+            NetworkStateManager.state.collectLatest { state ->
                 networkListener(state)
             }
         }

@@ -9,6 +9,7 @@ import com.example.movee.feature.NoInternetBottomSheet
 import com.example.movee.network.connectivity.NetworkManager
 import com.example.movee.network.connectivity.NetworkStateManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.flow.collectLatest
 
 abstract class BaseBottomSheet : BottomSheetDialogFragment() {
 
@@ -55,7 +56,7 @@ abstract class BaseBottomSheet : BottomSheetDialogFragment() {
 
     private fun registerListener() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            NetworkStateManager.state.collect { state ->
+            NetworkStateManager.state.collectLatest { state ->
                 networkListener(state)
             }
         }
