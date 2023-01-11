@@ -2,4 +2,12 @@
     <string name="app_name">Movee</string>
     <string name="watch_trailer">Watch Trailer</string>
     <string name="genre_not_picked_yet">Kamu belum pilih genre.</string>
+    <string name="description">Description</string>
+    <string name="see_review">See Review</string>
+    <string name="caster">Caster(s)</string>
+    <string name="pick_genre">Pilih Genre</string>
+    <string name="close">close</string>
+    <string name="check_your_internet">Periksa internet kamu.</string>
+    <string name="review_not_found">Belum ada ulasan.</string>
+    <string name="back">Kembali</string>
 </resources>

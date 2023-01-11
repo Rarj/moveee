@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:hint="Pilih Genre"
+        android:hint="@string/pick_genre"
         android:textAlignment="textStart"
         android:textAllCaps="false"
         android:textColor="@android:color/darker_gray"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:backgroundTint="@android:color/holo_red_dark"
-            android:text="Pilih Genre"
+            android:text="@string/pick_genre"
             android:textAllCaps="false"
             android:textSize="18sp" />
 

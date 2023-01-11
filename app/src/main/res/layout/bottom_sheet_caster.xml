@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:background="@android:color/transparent"
-        android:contentDescription="close"
+        android:contentDescription="@string/close"
         android:padding="16dp"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"

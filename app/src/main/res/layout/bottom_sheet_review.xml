@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:background="@android:color/transparent"
-        android:contentDescription="close"
+        android:contentDescription="@string/close"
         android:padding="16dp"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
@@ -65,7 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Belum ada ulasan."
+            android:text="@string/review_not_found"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp" />
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:backgroundTint="@android:color/holo_red_dark"
-            android:text="Kembali"
+            android:text="@string/back"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp" />
