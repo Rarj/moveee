@@ -24,7 +24,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
-            tools:src="@tools:sample/avatars" />
+            android:src="@drawable/ic_no_internet" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/text_view_state"
