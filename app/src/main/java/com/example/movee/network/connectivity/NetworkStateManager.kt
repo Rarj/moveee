@@ -10,7 +10,6 @@ object NetworkStateManager {
     val state get() = _state.asStateFlow()
 
     suspend fun updateNetworkState(value: Boolean) {
-        Log.e("updateNetworkState: ", value.toString())
         _state.emit(value)
     }
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movee</string>
+    <string name="watch_trailer">Watch Trailer</string>
+    <string name="genre_not_picked_yet">Kamu belum pilih genre.</string>
 </resources>
