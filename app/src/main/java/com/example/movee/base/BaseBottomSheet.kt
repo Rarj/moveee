@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 abstract class BaseBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var networkManager: NetworkManager
+    private val noConnection by lazy { NoInternetBottomSheet() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,18 +40,17 @@ abstract class BaseBottomSheet : BottomSheetDialogFragment() {
     }
 
     protected fun validateConnection(state: Boolean) {
-//        val noConnection = NoInternetBottomSheet()
-//        noConnection.isCancelable = false
-//
-//        if (state) {
-//            if (noConnection.isVisible) noConnection.dismiss()
-//        } else {
-//            if (noConnection.isVisible.not()) {
-//                activity?.supportFragmentManager?.let {
-//                    noConnection.show(it, "NO_INTERNET_CONNECTION")
-//                }
-//            }
-//        }
+        noConnection.isCancelable = false
+
+        if (state) {
+            if (noConnection.isVisible) noConnection.dismiss()
+        } else {
+            if (noConnection.isVisible.not()) {
+                activity?.supportFragmentManager?.let {
+                    noConnection.show(it, "NO_INTERNET_CONNECTION")
+                }
+            }
+        }
     }
 
     private fun registerListener() {

@@ -27,13 +27,7 @@ class GenreBottomSheet(
     private lateinit var adapter: GenreAdapter
 
     override fun networkListener(state: Boolean) {
-        if (state) {
-            Toast.makeText(context, "connected", Toast.LENGTH_SHORT)
-                .show()
-        }  else {
-            Toast.makeText(context, "losing connection", Toast.LENGTH_SHORT)
-                .show()
-        }
+        validateConnection(state)
     }
 
     override fun getLayoutView(inflater: LayoutInflater, container: ViewGroup?): View {
