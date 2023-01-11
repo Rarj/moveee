@@ -34,10 +34,10 @@ abstract class BaseActivity : AppCompatActivity() {
         noConnection.isCancelable = false
 
         if (state) {
-            if (noConnection.isVisible) noConnection.dismiss()
+            if (noConnection.isVisible) noConnection.dismissNow()
         } else {
-            if (noConnection.isVisible.not()) {
-                noConnection.show(supportFragmentManager, "NO_INTERNET_CONNECTION")
+            if (noConnection.isVisible.not() && noConnection.isAdded.not()) {
+                noConnection.showNow(supportFragmentManager, "NO_INTERNET_CONNECTION")
             }
         }
     }
