@@ -9,6 +9,7 @@ import com.example.movee.feature.NoInternetBottomSheet
 import com.example.movee.network.connectivity.NetworkManager
 import com.example.movee.network.connectivity.NetworkStateManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.flow.collectLatest
 
 abstract class BaseBottomSheet : BottomSheetDialogFragment() {
 
@@ -43,19 +44,17 @@ abstract class BaseBottomSheet : BottomSheetDialogFragment() {
         noConnection.isCancelable = false
 
         if (state) {
-            if (noConnection.isVisible) noConnection.dismiss()
+            if (noConnection.isVisible) noConnection.dismissNow()
         } else {
-            if (noConnection.isVisible.not()) {
-                activity?.supportFragmentManager?.let {
-                    noConnection.show(it, "NO_INTERNET_CONNECTION")
-                }
+            if (noConnection.isVisible.not() && noConnection.isAdded.not()) {
+                noConnection.showNow(childFragmentManager, "NO_INTERNET_CONNECTION")
             }
         }
     }
 
     private fun registerListener() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            NetworkStateManager.state.collect { state ->
+            NetworkStateManager.state.collectLatest { state ->
                 networkListener(state)
             }
         }
