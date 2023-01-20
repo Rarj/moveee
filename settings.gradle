@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Movee"
-include ':app'
+include(':app', ':core', ':network')

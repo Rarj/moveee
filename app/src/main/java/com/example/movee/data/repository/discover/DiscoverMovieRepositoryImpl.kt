@@ -1,9 +1,9 @@
 package com.example.movee.data.repository.discover
 
 import androidx.paging.PagingData
-import com.example.movee.paging.BasePagingSource
-import com.example.movee.paging.PageUtils
-import com.example.movee.paging.PagingDataModel
+import com.example.core.paging.BasePagingSource
+import com.example.core.paging.PageUtils
+import com.example.core.paging.PagingDataModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
