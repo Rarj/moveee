@@ -1,4 +1,4 @@
-package com.example.movee.paging
+package com.example.core.paging
 
 import com.google.gson.annotations.SerializedName
 

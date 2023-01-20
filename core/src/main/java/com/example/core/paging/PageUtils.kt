@@ -1,4 +1,4 @@
-package com.example.movee.paging
+package com.example.core.paging
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
