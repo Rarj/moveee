@@ -3,6 +3,7 @@ package com.example.movee.feature.video
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import com.example.Secret
 import com.example.movee.BuildConfig
 import com.example.movee.databinding.ActivityVideoBinding
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -22,7 +23,7 @@ class VideoActivity : YouTubeBaseActivity() {
         binding = ActivityVideoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.player.initialize(BuildConfig.YT_KEY, object : OnInitializedListener {
+        binding.player.initialize(Secret.youtubeKey(), object : OnInitializedListener {
             override fun onInitializationSuccess(
                 p0: YouTubePlayer.Provider?,
                 player: YouTubePlayer?,

@@ -19,8 +19,6 @@ android {
 
         buildConfigField 'String', 'BASE_URL', "\"https://api.themoviedb.org/3/\""
         buildConfigField 'String', 'BASE_URL_IMAGE', "\"https://image.tmdb.org/t/p/w500\""
-        buildConfigField 'String', 'API_KEY', "\"33ef4526082667e26fd77c6773694d55\""
-        buildConfigField 'String', 'YT_KEY', "\"AIzaSyCQGncohTCtCckNwTqmkZNdx35rhTNvE_0\""
     }
 
     buildTypes {
@@ -38,6 +36,11 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
     }
 }
 
