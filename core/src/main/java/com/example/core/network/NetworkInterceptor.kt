@@ -1,7 +1,6 @@
 package com.example.core.network
 
-import com.example.Secret
-import com.example.movee.BuildConfig
+import com.example.core.Secret
 import okhttp3.Interceptor
 import okhttp3.Response
 
