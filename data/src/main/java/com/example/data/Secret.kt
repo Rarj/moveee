@@ -1,4 +1,4 @@
-package com.example.core
+package com.example.data
 
 object Secret {
     init {
@@ -7,4 +7,6 @@ object Secret {
 
     external fun apiKey(): String
     external fun youtubeKey(): String
+    external fun baseURL(): String
+    external fun baseURLImage(): String
 }

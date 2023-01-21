@@ -1,6 +1,6 @@
-package com.example.core.network
+package com.example.data.network
 
-import com.example.core.Secret
+import com.example.data.Secret
 import okhttp3.Interceptor
 import okhttp3.Response
 

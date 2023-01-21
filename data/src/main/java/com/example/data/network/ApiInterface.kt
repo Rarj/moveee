@@ -1,4 +1,4 @@
-package com.example.core.network
+package com.example.data.network
 
 import com.example.domain.repo.response.DiscoverMovieResponse
 import retrofit2.http.GET
