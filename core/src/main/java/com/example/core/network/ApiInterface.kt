@@ -9,6 +9,6 @@ interface ApiInterface {
     @GET("discover/movie")
     suspend fun discoverMovie(
         @Query("with_genres") genreId: Int, @Query("page") page: Int
-    ): com.example.domain.repo.response.DiscoverMovieResponse
+    ): DiscoverMovieResponse
 
 }
