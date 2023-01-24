@@ -1,6 +1,11 @@
 package com.example.movee
 
 import android.app.Application
+import com.example.data.di.dataSourceInjector
+import com.example.data.di.networkInjector
+import com.example.data.di.repositoryInjector
+import com.example.di.viewModelInjector
+import com.example.domain.repo.di.useCaseInjector
 import com.example.movee.di.appModules
 import com.example.movee.di.dataSourceModule
 import com.example.movee.di.repositoryModules
@@ -16,6 +21,9 @@ class MoveeApplication : Application() {
         startKoin {
             androidContext(this@MoveeApplication)
             modules(appModules, viewModelModules, repositoryModules, dataSourceModule)
+            modules(
+                networkInjector, viewModelInjector, repositoryInjector, dataSourceInjector, useCaseInjector
+            )
         }
     }
 

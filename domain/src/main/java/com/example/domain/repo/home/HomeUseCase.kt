@@ -1,5 +1,10 @@
 package com.example.domain.repo.home
 
-class HomeUseCase(
-    private val repo: HomeRepository
-)
+import android.util.Log
+
+class HomeUseCase(private val repo: HomeRepository) {
+    suspend fun getMovie() {
+        repo.discoverMovie(1)
+        Log.e("ASDW", HomeUseCase::class.java.name)
+    }
+}

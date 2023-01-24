@@ -1,5 +1,6 @@
 package com.example.movee
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Lifecycle
@@ -8,6 +9,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
+import com.example.home.HomeActivity
 import com.example.movee.base.BaseActivity
 import com.example.movee.databinding.ActivityMainBinding
 import com.example.movee.feature.detail.DetailMovieActivity.Companion.gotoDetailActivity
@@ -37,6 +39,9 @@ class MainActivity : BaseActivity() {
         setupUI()
         setupAdapter()
         setupObserver()
+
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setupAdapter() {
