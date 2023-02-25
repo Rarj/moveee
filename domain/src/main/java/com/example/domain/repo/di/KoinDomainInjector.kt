@@ -4,5 +4,5 @@ import com.example.domain.repo.home.HomeUseCase
 import org.koin.dsl.module
 
 val useCaseInjector = module {
-    single { HomeUseCase(get()) }
+    single { HomeUseCase() }
 }

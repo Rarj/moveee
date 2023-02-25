@@ -13,9 +13,8 @@ class HomeRepositoryImpl(
 
     override suspend fun discoverMovie(genreID: Int): Flow<DiscoverMovie> {
         Log.e("ASDW", HomeRepositoryImpl::class.java.name)
-            dataSource.getMovie()
-        return flow {
-        }
+        dataSource.getMovie()
+        return flow {}
     }
 
 }
