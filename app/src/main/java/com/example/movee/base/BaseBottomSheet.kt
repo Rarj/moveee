@@ -44,7 +44,7 @@ abstract class BaseBottomSheet : BottomSheetDialogFragment() {
         noConnection.isCancelable = false
 
         if (state) {
-            if (noConnection.isVisible) noConnection.dismissNow()
+            if (noConnection.isVisible) noConnection.dismiss()
         } else {
             if (noConnection.isVisible.not() && noConnection.isAdded.not()) {
                 noConnection.showNow(childFragmentManager, "NO_INTERNET_CONNECTION")

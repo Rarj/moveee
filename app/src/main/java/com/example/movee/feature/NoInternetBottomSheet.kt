@@ -39,7 +39,7 @@ class NoInternetBottomSheet: BottomSheetDialogFragment() {
     private fun registerListener() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             NetworkStateManager.state.collect { state ->
-                if(state) dismissNow()
+                if(state) dismiss()
             }
         }
     }
