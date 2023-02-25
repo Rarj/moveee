@@ -13,6 +13,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "API_KEY", "\"33ef4526082667e26fd77c6773694d55\"")
     }
 
     buildTypes {
@@ -39,7 +41,7 @@ android {
 dependencies {
 
     implementation project(":domain")
-    implementation project(":injector")
+    api project(":injector")
 
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-gson:2.9.0"
