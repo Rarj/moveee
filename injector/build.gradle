@@ -32,8 +32,8 @@ android {
 
 dependencies {
 
-    api "io.insert-koin:koin-core:3.3.0"
-    api "io.insert-koin:koin-android:3.3.1"
+    api "io.insert-koin:koin-core:3.1.6"
+    api "io.insert-koin:koin-android:3.1.6"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
